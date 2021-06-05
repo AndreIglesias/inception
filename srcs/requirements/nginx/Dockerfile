@@ -1,4 +1,4 @@
-FROM alpine:${VERS}
+FROM alpine:3.12
 
 # update && install (nginx, openssl)
 RUN apk update --no-cache \

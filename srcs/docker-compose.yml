@@ -12,13 +12,13 @@ services:
             docker-network:
                 aliases:
                     - ciglesia.42.fr
-        environment:
-            VERS: ${VERS}
     wordpress:
         build: ./requirements/wordpress
         container_name: wordpress
         networks:
             - docker-network
+        environment:
+            - WP_USER=${WP_USER}
 
 networks:
     docker-network:
