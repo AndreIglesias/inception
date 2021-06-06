@@ -4,14 +4,12 @@ networks:
     docker-network:
         driver: bridge
 
-volumes:
-    wp_data:
-        external: false
-
 services:
     nginx:
         build: ./requirements/nginx
         container_name: nginx
+        depends_on:
+            - wordpress
         restart: always
         hostname: ciglesia.42.fr
         domainname: ciglesia.42.fr
@@ -22,11 +20,17 @@ services:
                 aliases:
                     - ciglesia.42.fr
         volumes:
-            - 'wp_data:/home/ciglesia/data/'
+            - type: bind
+              source: /home/user/data/wordpress
+              target: /www/wordpress
+              read_only: true
     wordpress:
         build: ./requirements/wordpress
         container_name: wordpress
+        restart: always
         networks:
             - docker-network
         volumes:
-            - 'wp_data:/home/ciglesia/data/'
+            - type: bind
+              source: /home/user/data/wordpress
+              target: /www

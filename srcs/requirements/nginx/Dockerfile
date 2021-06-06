@@ -25,13 +25,6 @@ RUN rm /etc/nginx/nginx.conf
 COPY ./config/nginx.conf /etc/nginx/nginx.conf
 COPY ./config/index.html /www/index.html
 
-ADD https://wordpress.org/latest.tar.gz .
-
-RUN tar -xvf latest.tar.gz \
-	&& mv wordpress /www \
-	&& rm -f latest.tar.gz
-
-
 EXPOSE 443
 
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
