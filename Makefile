@@ -6,12 +6,14 @@
 #    By: ciglesia <ciglesia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/27 21:50:16 by ciglesia          #+#    #+#              #
-#    Updated: 2021/06/05 23:34:21 by user             ###   ########.fr        #
+#    Updated: 2021/06/06 11:10:23 by user             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 YAML		=	docker-compose.yml
 SRCS		=	./srcs/
+
+CONTS		=	nginx wordpress
 
 COMPOSE		= 	docker-compose
 ECHO		=	echo -e
@@ -42,9 +44,12 @@ stop	:
 ps		:
 			@(cd $(SRCS) && $(COMPOSE) -f $(YAML) ps)
 
+rm		:
+			@(cd $(SRCS) && $(COMPOSE) -f $(YAML) rm $(CONTS))
+
 config	:
 			@(cd $(SRCS) && $(COMPOSE) -f $(YAML) config)
 
-re		:	stop all
+re		:	stop rm all
 
 .PHONY	:	all up down start stop

@@ -1,4 +1,13 @@
 version: "3.3"
+
+networks:
+    docker-network:
+        driver: bridge
+
+volumes:
+    wp_data:
+        external: false
+
 services:
     nginx:
         build: ./requirements/nginx
@@ -12,14 +21,12 @@ services:
             docker-network:
                 aliases:
                     - ciglesia.42.fr
+        volumes:
+            - 'wp_data:/home/ciglesia/data/'
     wordpress:
         build: ./requirements/wordpress
         container_name: wordpress
         networks:
             - docker-network
-        environment:
-            - WP_USER=${WP_USER}
-
-networks:
-    docker-network:
-        driver: bridge
+        volumes:
+            - 'wp_data:/home/ciglesia/data/'

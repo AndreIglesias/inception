@@ -16,4 +16,4 @@ RUN tar -xvf latest.tar.gz \
 	&& mv wp-config.php /www/ \
 	&& rm -f latest.tar.gz
 
-CMD /usr/bin/php -S 0.0.0.0:80 -t /www/
+CMD /usr/bin/php -S 0.0.0.0:9000 -t /www/
