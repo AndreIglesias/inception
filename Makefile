@@ -6,14 +6,14 @@
 #    By: ciglesia <ciglesia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/27 21:50:16 by ciglesia          #+#    #+#              #
-#    Updated: 2021/06/06 15:59:46 by user             ###   ########.fr        #
+#    Updated: 2021/06/07 00:14:27 by user             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 YAML		=	docker-compose.yml
 SRCS		=	./srcs/
 
-CONTS		=	nginx wordpress
+CONTS		=	nginx wordpress mariadb
 
 COMPOSE		= 	docker-compose
 ECHO		=	echo -e
@@ -52,4 +52,4 @@ config	:
 
 re		:	stop rm all
 
-.PHONY	:	all up down start stop
+.PHONY	:	all up down start stop ps rm config

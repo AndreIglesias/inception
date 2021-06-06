@@ -28,9 +28,22 @@ services:
         build: ./requirements/wordpress
         container_name: wordpress
         restart: always
+        depends_on:
+            - mariadb
         networks:
             - docker-network
         volumes:
             - type: bind
               source: /home/user/data/wordpress
               target: /www
+    mariadb:
+        build: ./requirements/mariadb
+        container_name: mariadb
+        restart: always
+        env_file: .env
+        networks:
+            - docker-network
+        volumes:
+            - type: bind
+              source: /home/user/data/db
+              target: /var/lib/mysql

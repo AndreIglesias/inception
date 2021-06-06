@@ -3,7 +3,7 @@ FROM alpine:3.12
 # update && install (nginx, openssl)
 RUN apk update --no-cache \
 	&& apk upgrade --no-cache \
-	&& apk add nginx openssl openssh \
+	&& apk add nginx openssl \
 	&& rm -rf /var/cache/apk/*
 
 # create user && group for nginx
