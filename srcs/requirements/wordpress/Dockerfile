@@ -6,4 +6,7 @@ RUN apk update --no-cache \
 	&& apk add --no-cache php7 php7-fpm php7-opcache \
 	php7-gd php7-mysqli php7-zlib php7-curl php7-mbstring php7-json php7-session
 
-CMD /usr/bin/php -S 0.0.0.0:9000 -t /www/
+COPY ./config/start.sh .
+RUN chmod +x start.sh
+
+CMD ["./start.sh"]

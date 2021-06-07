@@ -11,14 +11,14 @@ services:
         depends_on:
             - wordpress
         restart: always
-        hostname: ciglesia.42.fr
-        domainname: ciglesia.42.fr
+        hostname: $DOMAIN_NAME
+        domainname: $DOMAIN_NAME
         ports:
             - 443:443
         networks:
             docker-network:
                 aliases:
-                    - ciglesia.42.fr
+                    - $DOMAIN_NAME
         volumes:
             - type: bind
               source: /home/user/data/wordpress
@@ -28,6 +28,11 @@ services:
         build: ./requirements/wordpress
         container_name: wordpress
         restart: always
+        environment:
+            - WORDPRESS_DB_HOST=mariadb:3306
+            - WORDPRESS_DB_NAME=$DATABASE
+            - WORDPRESS_DB_USER=$DB_USER
+            - WORDPRESS_DB_PASSWORD=$DB_PASSWORD
         depends_on:
             - mariadb
         networks:

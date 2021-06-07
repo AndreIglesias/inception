@@ -6,3 +6,5 @@ DATABASE=wordpress
 DB_ROOT_PASSWORD=ciglesia
 DB_USER=ciglesia
 DB_PASSWORD=ciglesia
+
+ADM_EMAIL
