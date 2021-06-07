@@ -6,7 +6,7 @@
 #    By: ciglesia <ciglesia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/27 21:50:16 by ciglesia          #+#    #+#              #
-#    Updated: 2021/06/07 00:14:27 by user             ###   ########.fr        #
+#    Updated: 2021/06/07 16:25:58 by user             ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -46,6 +46,8 @@ ps		:
 
 rm		:
 			@(cd $(SRCS) && $(COMPOSE) -f $(YAML) rm $(CONTS))
+			rm -rf ~/data/wordpress/wordpress
+			rm -rf ~/data/db/*
 
 config	:
 			@(cd $(SRCS) && $(COMPOSE) -f $(YAML) config)

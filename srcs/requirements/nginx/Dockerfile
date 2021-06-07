@@ -1,3 +1,4 @@
+#https://wiki.alpinelinux.org/wiki/Nginx
 FROM alpine:3.12
 
 # update && install (nginx, openssl)
@@ -23,8 +24,11 @@ RUN mkdir -p /etc/nginx/ssl \
 RUN rm /etc/nginx/nginx.conf
 
 COPY ./config/nginx.conf /etc/nginx/nginx.conf
-COPY ./config/index.html /www/index.html
+COPY ./config/index.html /index.html
+
+COPY ./config/setup.sh .
+RUN chmod +x setup.sh
 
 EXPOSE 443
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+ENTRYPOINT ["./setup.sh"]

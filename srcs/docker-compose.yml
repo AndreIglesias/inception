@@ -25,36 +25,31 @@ services:
         volumes:
             - type: bind
               source: /home/user/data/wordpress
-              target: /www/wordpress
-              read_only: true
+              target: /www/
     wordpress:
         build: ./requirements/wordpress
         image: wordpress
         container_name: wordpress
         restart: always
+        env_file: .env
         environment:
-            - WORDPRESS_DB_HOST=mariadb:3306
-            - WORDPRESS_DB_NAME=$DATABASE
-            - WORDPRESS_DB_USER=$DB_USER
-            - WORDPRESS_DB_PASSWORD=$DB_PASSWORD
+            - WP_DB_NAME=$DATABASE
+            - WP_DB_USER=$DB_USER
+            - WP_DB_PASS=$DB_PASSWORD
         depends_on:
             - mariadb
-        ports:
-            - 9000
         networks:
             - docker-network
         volumes:
             - type: bind
               source: /home/user/data/wordpress
-              target: /var/www/html/wordpress
+              target: /var/www/html/
     mariadb:
         build: ./requirements/mariadb
         image: mariadb
         container_name: mariadb
         restart: always
         env_file: .env
-        ports:
-            - 3306
         networks:
             - docker-network
         volumes:
