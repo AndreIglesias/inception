@@ -25,4 +25,4 @@ RUN chmod +x start.sh
 
 CMD ["./start.sh"]
 
-EXPOSE 9000
+#EXPOSE 9000

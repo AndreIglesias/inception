@@ -7,6 +7,7 @@ networks:
 services:
     nginx:
         build: ./requirements/nginx
+        image: nginx
         container_name: nginx
         depends_on:
             - wordpress
@@ -15,6 +16,8 @@ services:
         domainname: $DOMAIN_NAME
         ports:
             - 443:443
+        extra_hosts:
+            - "$DOMAIN_NAME:127.0.0.1"
         networks:
             docker-network:
                 aliases:
@@ -26,10 +29,9 @@ services:
               read_only: true
     wordpress:
         build: ./requirements/wordpress
+        image: wordpress
         container_name: wordpress
         restart: always
-#        ports:
-#            - 9000:9000
         environment:
             - WORDPRESS_DB_HOST=mariadb:3306
             - WORDPRESS_DB_NAME=$DATABASE
@@ -37,6 +39,8 @@ services:
             - WORDPRESS_DB_PASSWORD=$DB_PASSWORD
         depends_on:
             - mariadb
+        ports:
+            - 9000
         networks:
             - docker-network
         volumes:
@@ -45,9 +49,12 @@ services:
               target: /var/www/html/wordpress
     mariadb:
         build: ./requirements/mariadb
+        image: mariadb
         container_name: mariadb
         restart: always
         env_file: .env
+        ports:
+            - 3306
         networks:
             - docker-network
         volumes:
