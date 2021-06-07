@@ -28,6 +28,8 @@ services:
         build: ./requirements/wordpress
         container_name: wordpress
         restart: always
+        ports:
+            - 9000:9000
         environment:
             - WORDPRESS_DB_HOST=mariadb:3306
             - WORDPRESS_DB_NAME=$DATABASE
@@ -40,7 +42,7 @@ services:
         volumes:
             - type: bind
               source: /home/user/data/wordpress
-              target: /www
+              target: /www/wordpress
     mariadb:
         build: ./requirements/mariadb
         container_name: mariadb
