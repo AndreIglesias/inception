@@ -16,9 +16,9 @@ RUN		rm /etc/php7/php-fpm.d/www.conf
 
 COPY 	./config/www.conf  /etc/php7/php-fpm.d/www.conf
 
-RUN		mkdir -p /www/wordpress/
+RUN		mkdir -p /var/www/html/wordpress
 
-RUN		chown -R www-data:www-data /www/wordpress
+RUN		chown -R www-data:www-data /var/www/html/wordpress
 
 COPY ./config/start.sh .
 RUN chmod +x start.sh

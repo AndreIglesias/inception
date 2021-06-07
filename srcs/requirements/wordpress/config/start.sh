@@ -6,4 +6,6 @@
 #wp-cli core install --url=localhost/wordpress --title=Inception --admin_user=$DB_USER --admin_password=$DB_ROOT_PASSWORD --admin_email="$ADM_EMAIL" --allow-root --path=/www/
 #wp-cli user create $DB_USER $ADM_EMAIL --role=editor --user_pass="$DB_PASSWORD" --allow-root --path=/www/
 
-/usr/bin/php -S 0.0.0.0:9000 -t /www/
+#php-fpm7 --nodaemonize
+
+/usr/bin/php -S 0.0.0.0:9000 -t  /var/www/html/
