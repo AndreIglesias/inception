@@ -10,8 +10,6 @@ RUN apk update --no-cache \
 RUN addgroup -g 82 -S www-data;\
 	adduser -u 82 -D -S -G www-data www-data
 
-#ENV	DATABASE="wordpress" DB_USER="NACH0" DB_PASSWORD="N4cH07br3"
-
 RUN wget -O /tmp/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	&& chmod +x /tmp/wp-cli.phar \
 	&& mv /tmp/wp-cli.phar /usr/local/bin/wp-cli

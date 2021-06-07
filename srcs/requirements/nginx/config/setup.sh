@@ -1,7 +1,5 @@
 #!/bin/sh
 
-if [ ! -e /www/index.html ]; then
-	mv /index.html /www/index.html
-fi
+mv /index.html /www/index.html
 
 /usr/sbin/nginx -g 'daemon off;'
